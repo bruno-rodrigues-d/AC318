@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content white-text">
+          <div class="row">
+            <div class="col s5">
+              <h5>Eletronic Store</h5>
+              <form #componentesForm="ngForm" (ngSubmit)="onSubmit(componentesForm)">
+                <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="componentesService.selectedComponentes._id">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="codigo" #name="ngModel" [(ngModel)]="componentesService.selectedComponentes.codigo" placeholder="Entre com o código do componente" required>
+                    <label>Código :
+                      <label class="red-text">*</label>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="nome" #name="ngModel" [(ngModel)]="componentesService.selectedComponentes.nome" placeholder="Entre com o nome do componente">
+                    <label>Nome :</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="valor" #name="ngModel" [(ngModel)]="componentesService.selectedComponentes.valor" placeholder="Valor do componente">
+                    <label>Valor :</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="preco" #name="ngModel" [(ngModel)]="componentesService.selectedComponentes.preco" placeholder="Preço do componente">
+                    <label>Preço :</label>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input type="text" name="quantidade" #name="ngModel" [(ngModel)]="componentesService.selectedComponentes.quantidade" placeholder="Quantidade de componente(s)">
+                      <label>Quantidade :</label>
+                    </div>
+                  </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <button class="btn btn-custom right" style="display:none" type="button" (click)="resetForm(componentesForm)">Reset</button>
+                    <button class="btn btn-custom right" type="submit" [disabled]="!componentesForm.valid">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col s7">
+                <table class="responsive-table highlight">
+                    <thead>
+                      <tr>
+                        <th>Codigo: </th>
+                        <th>Nome:</th>
+                        <th>Valor: </th>
+                        <th>Preço: </th>
+                        <th>Quantidade: </th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tr *ngFor="let comp of componentesService.componentes">
+                      <td>{{comp.codigo}}</td>
+                      <td>{{comp.nome}}</td>
+                      <td>{{comp.valor}}</td>
+                      <td>{{comp.preco}}</td>
+                      <td>{{comp.quantidade}}</td>
+                      <td>
+                          <a class="action-btn" (click)="onEdit(comp)">
+                            <i class="material-icons">edit</i>
+                          </a>
+                          <a class="action-btn" (click)="onDelete(comp._id,componentesForm)">
+                            <i class="material-icons">delete</i>
+                          </a>
+                        </td>
+                    </tr>
+                  </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
